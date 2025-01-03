@@ -1,4 +1,5 @@
 import { serial, text, varchar } from "drizzle-orm/pg-core";
+import { eq } from 'drizzle-orm';
 import { pgTable } from "drizzle-orm/pg-core";
 
 export const MockInterview = pgTable('mockInterview', {
@@ -12,7 +13,7 @@ export const MockInterview = pgTable('mockInterview', {
     mockId: varchar('mockId').notNull()
 });
 
-export const Question = pgTable('question', {
+export const Question = pgTable('Question', {
     id: serial('id').primaryKey(),
     MockQuestionJsonResp: text('MockQuestionJsonResp').notNull(),
     jobPosition: varchar('jobPosition').notNull(),
@@ -22,14 +23,24 @@ export const Question = pgTable('question', {
     company: varchar('company').notNull(),
     createdBy: varchar('createdBy').notNull(),
     createdAt: varchar('createdAt'),
-    mockId: varchar('mockId').notNull()
+    mockId: varchar('mockIdRef').notNull()
 });
 
+// export const UserAnswer = pgTable('userAnswer',{
+//     id: serial('id').primaryKey(),
+//     mockId: varchar('mockId').notNull(),
+//     question: varchar('question').notNull(),
+//     correctAns: text('correctAns'),
+//     userAns: text('userAns'),
+//     feedback: text('feedback'),
+//     rating: varchar('rating'),
+//     userEmail: varchar('userEmail'),
+//     createdAt: varchar('createdAt')
+// })
 
-
-export const UserAnswer = pgTable('userAnswer',{
+export const UserAnswer = pgTable('userAnswer', {
     id: serial('id').primaryKey(),
-    mockIdRef: varchar('mockId').notNull(),
+    mockId: varchar('mockId').notNull(),
     question: varchar('question').notNull(),
     correctAns: text('correctAns'),
     userAns: text('userAns'),
@@ -37,7 +48,9 @@ export const UserAnswer = pgTable('userAnswer',{
     rating: varchar('rating'),
     userEmail: varchar('userEmail'),
     createdAt: varchar('createdAt')
-})
+});
+
+
 
 export const Newsletter = pgTable('newsletter',{
     id: serial('id').primaryKey(),

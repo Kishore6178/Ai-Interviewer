@@ -22,16 +22,29 @@ const Feedback = ({ params }) => {
     GetFeedback();
   }, []);
 
+  // const GetFeedback = async ()=> {
+  //   const result = await db
+  //     .select()
+  //     .from(UserAnswer)
+  //     .where(eq(UserAnswer.mockId, params.interviewId))
+  //     .orderBy(UserAnswer.id);
+
+  //   //console.log(result);
+  //   console.log("Columns in UserAnswer result:", result[0] ? Object.keys(result[0]) : 'No result');
+  //   setFeedbackList(result);
+  // };
+
   const GetFeedback = async () => {
     const result = await db
       .select()
       .from(UserAnswer)
-      .where(eq(UserAnswer.mockIdRef, params.interviewId))
+      .where(eq(UserAnswer.mockId, params.interviewId))
       .orderBy(UserAnswer.id);
-
+  
     console.log(result);
     setFeedbackList(result);
   };
+  
 
   const overallRating = useMemo(() => {
     if (feedbackList && feedbackList.length > 0) {
