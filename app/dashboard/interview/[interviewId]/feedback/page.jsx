@@ -44,7 +44,6 @@ const Feedback = ({ params }) => {
     console.log(result);
     setFeedbackList(result);
   };
-  
 
   const overallRating = useMemo(() => {
     if (feedbackList && feedbackList.length > 0) {
